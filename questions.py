@@ -30,6 +30,9 @@ answers = [
 
 correct_answers_index = [1, 2, 0, 3, 1]
 
+"""CREO UNA VARIABLE PARA GUARDAR LOS PUNTOS DEL PLAYER"""
+PlayerPoints = 0
+
 # El usuario deberá contestar 3 preguntas
 
 for _ in range(3):
@@ -45,22 +48,27 @@ for _ in range(3):
     # El usuario tiene 2 intentos para responder correctamente
 
     for intento in range(2):
-        """MODIFICO EL INPUT PARA PODER INGRESAR STRING Y VERIFICO QUE NO LO SEA"""
         user_answer = input("Respuesta: ")
         if user_answer.isdigit():
             user_answer = int(user_answer) - 1
         else:
             print("Respuesta no Valida")
             sys.exit(1)                 
+
         # Se verifica si la respuesta es correcta
 
-        """MODIFICO EL IF PARA VERIFICAR QUE LA RESPUESTA DADA ESTE ENTRE LAS OPCIONES POSIBLES"""
         if user_answer == correct_answers_index[question_index]:
-            print("¡Correcto!")
+
+            """SUMO +1p SI LA RESPUESTA FUE CORRECTA"""
+            PlayerPoints += 1
+            print("¡Correcto! +1p")
             break
         elif user_answer >= 0:
             if user_answer < 4:
-                print("Incorrecto")
+
+                """RESTO -0.5p SI LA RESPUESTA FUE ERRONEA"""
+                PlayerPoints -= 0.5
+                print("Incorrecto -0.5p")
                 continue
             else:
                 print("Respuesta no Valida")
@@ -78,3 +86,7 @@ for _ in range(3):
     # Se imprime un blanco al final de la pregunta
 
     print()
+
+"""MUESTRA LOS PUNTOS DEL JUGADOR/ORA"""
+
+print("El puntaje del jugador/ora fue de ",PlayerPoints)
